@@ -13,6 +13,7 @@ pipeline {
         IMAGE_NAME = "java-app-declartive"
         IMAGE_TAG = "sayedatwhdevops/java-app-declartive"
         IMAGE_VERSION = "${BUILD_NUMBER}"
+        CONTAINER_NAME = "java-app-declartive"
     }
 
     stages {
@@ -54,5 +55,18 @@ pipeline {
                 sh 'docker push ${IMAGE_TAG}:${IMAGE_VERSION}'
             }
         }
+
+       stage('Deploy') {
+         steps {
+           sh '''
+               docker rm -f ${CONTAINER_NAME} || true
+
+               docker run -d \
+                --name ${CONTAINER_NAME} \
+                -p 8080:8080 \
+                 ${IMAGE_TAG}:${IMAGE_VERSION}
+        '''
+    }
+}
     }
 }

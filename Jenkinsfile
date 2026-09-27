@@ -19,7 +19,7 @@ pipeline {
 
         stage("Build Java Application") {
             steps {
-                sh " mvn package install -DskipTests=true "
+                sh " mvn clean package -DskipTests=true "
             }
         }
 

@@ -13,11 +13,7 @@ pipeline{
   IMAGE_VERSION = "${BUILD_NUMBER}"
   }
   stages {
-    stage(" Checkout SCM ") {
-      steps {
-        checkout scm
-      }
-    }
+   
     stage(" build java application ") {
       steps {
         sh " mvn package install -DskipTests=true"

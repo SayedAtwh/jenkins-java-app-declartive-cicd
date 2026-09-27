@@ -19,13 +19,13 @@ pipeline {
 
         stage("Build Java Application") {
             steps {
-                sh 'mvn clean package -DskipTests=true'
+                sh " mvn clean package "
             }
         }
 
         stage("Test Java Application") {
             steps {
-                sh 'mvn test'
+                sh " mvn test "
             }
         }
 
